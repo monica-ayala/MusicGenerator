@@ -192,7 +192,7 @@ model.compile(loss='categorical_crossentropy', optimizer=opt)
 model.summary()
 
 #Training the Model
-history = model.fit(X_train, y_train, batch_size=256, epochs=10)
+history = model.fit(X_train, y_train, batch_size=100, epochs=50)
 
 #Plotting the learnings 
 history_df = pd.DataFrame(history.history)
@@ -201,6 +201,8 @@ fig.suptitle("Learning Plot of Model for Loss")
 pl=sns.lineplot(data=history_df["loss"],color="#444160")
 pl.set(ylabel ="Training Loss")
 pl.set(xlabel ="Epochs")
+plt.show()
+
 
 def Malody_Generator(Note_Count):
     seed = X_seed[np.random.randint(0,len(X_seed)-1)]
@@ -209,7 +211,7 @@ def Malody_Generator(Note_Count):
     for i in range(Note_Count):
         seed = seed.reshape(1,length,1)
         prediction = model.predict(seed, verbose=0)[0]
-        prediction = np.log(prediction) / 1.0 #diversity
+        prediction = np.log(prediction) / 1.5 #diversity
         exp_preds = np.exp(prediction)
         prediction = exp_preds / np.sum(exp_preds)
         index = np.argmax(prediction)
@@ -225,7 +227,7 @@ def Malody_Generator(Note_Count):
 
 
 #getting the Notes and Melody created by the model
-Music_notes, Melody = Malody_Generator(100)
+Music_notes, Melody = Malody_Generator(10)
 #show(Melody)
 
 #To save the generated melody
