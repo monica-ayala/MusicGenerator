@@ -143,7 +143,7 @@ class Ui_MainWindow(object):
         for i in range(0, 127):
             keyDetune.append(random.randint(-30, 30))
 
-        for n in b.flat.notes:
+        for n in b.flatten().notes:
             n.pitch.microtone = keyDetune[n.pitch.midi]
 
         sp = midi.realtime.StreamPlayer(b)
@@ -155,7 +155,7 @@ class Ui_MainWindow(object):
         for i in range(0, 127):
             keyDetune2.append(random.randint(-30, 30))
 
-        for n in a.flat.notes:
+        for n in a.flatten().notes:
             n.pitch.microtone = keyDetune2[n.pitch.midi]
 
         sp = midi.realtime.StreamPlayer(a)
