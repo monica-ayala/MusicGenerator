@@ -6,6 +6,13 @@ from functools import partial
 # para permitirnos llamar una función con args desde button.clicked.connect
 from music21 import stream, note, midi
 import random
+from main import Melody_Generator
+from main import chords_seed, reverse_mapping, length, L_symb
+import tensorflow as tf
+import keras
+
+model = keras.models.load_model("saved_model_200_piano.keras")
+Melody_Generator(model, chords_seed, reverse_mapping, length, L_symb, 100, [], 1)
 
 keyDetune = []
 keyDetune2 = []

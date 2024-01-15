@@ -19,7 +19,7 @@ import os
 
 ## BEGINING OF LOADING THE DATA 
 
-filepath = "training_data/Piano/" 
+filepath = "training_data/Guitar/" 
 
 piano_files= []
 for i in os.listdir(filepath):
@@ -135,7 +135,7 @@ y = tf.keras.utils.to_categorical(targets)
 train_chords, chords_seed, train_target, target_seed = train_test_split(X, y, test_size=0.6)
 
 ## BEGINING OF MODEL IMPLEMENTAITON
-model_file_path = "saved_model.keras"
+model_file_path = "saved_modell"
 
 if os.path.exists(model_file_path):
     model = keras.models.load_model(model_file_path)
