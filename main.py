@@ -141,7 +141,7 @@ X = (np.reshape(features, (L_datapoints, length, 1)))/ float(L_symb)
 y = tf.keras.utils.to_categorical(targets) 
 
 #Taking out a subset of data to be used as seed
-X_train, X_seed, y_train, y_seed = train_test_split(X, y, test_size=0.5, random_state=45)
+X_train, X_seed, y_train, y_seed = train_test_split(X, y, test_size=0.6, random_state=45)
 
 ## BEGINING OF MODEL IMPLEMENTAITON
 model_file_path = "saved_model.keras"
@@ -162,7 +162,7 @@ else:
     opt = Adamax(learning_rate=0.01)
     model.compile(loss='categorical_crossentropy', optimizer=opt) 
 
-    history = model.fit(X_train, y_train, batch_size=500, epochs=10)
+    history = model.fit(X_train, y_train, batch_size=150, epochs=200)
     model.save(model_file_path)
     
     history_df = pd.DataFrame(history.history)
